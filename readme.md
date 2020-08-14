@@ -17,6 +17,7 @@
 - [ ] Add Markdown preview
 - [ ] Create Settings dialog
 - [ ] Create Find feature
+- [ ] Add tabs functionality
 
 ## Credits
 

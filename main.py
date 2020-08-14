@@ -1,5 +1,5 @@
 # Copper Text Editor, ver. 0.9
-import sys
+import sys, os
 from PyQt5 import uic
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QMainWindow, QApplication
 
@@ -18,8 +18,10 @@ class MainWindow(QMainWindow):
         # Disable rich text
         self.textEdit.setAcceptRichText(False)
 
-        # Utilize variable to hold full path
+        # Create variable to hold path of opened or saved file
         self.filename = ""
+
+        self.title_update()
 
         # Connect signals with actions
         self.actionNew.triggered.connect(self.new)
@@ -37,6 +39,7 @@ class MainWindow(QMainWindow):
         self.actionCut.triggered.connect(self.cut)
         self.actionMenuCut.triggered.connect(self.cut)
         self.actionMenuQuit.triggered.connect(self.quit)
+        self.actionToggleWrap.triggered.connect(self.wrap_toggle)
 
     # Displays About Qt dialog
     def about_qt(self):
@@ -66,6 +69,7 @@ class MainWindow(QMainWindow):
         try:
             with open(self.filename, newline='', encoding='utf8') as f:
                 self.textEdit.setText(f.read())
+                self.title_update()
         # if exception, show error message
         except Exception as e:
             print(str(e))
@@ -82,6 +86,7 @@ class MainWindow(QMainWindow):
             if msg == QMessageBox.Yes:
                 self.filename = ""
                 self.textEdit.clear()
+                self.title_update()
             elif msg == QMessageBox.Save:
                 self.save_as()
             elif msg == QMessageBox.Cancel:
@@ -110,9 +115,14 @@ class MainWindow(QMainWindow):
             with open(self.filename, "w", encoding='utf8') as f:
                 f.write(self.textEdit.toPlainText())
                 self.statusbar.showMessage(f"File saved in: {self.filename}")
+                self.title_update()
         # if exception, show error message
         except Exception as e:
             print(str(e))
+
+    def title_update(self):
+        filetext = (os.path.basename(self.filename) if self.filename else "Untitled")
+        self.setWindowTitle(f"{filetext} - Copper Text Editor")
 
     def copy(self):
         self.textEdit.copy()
@@ -122,9 +132,12 @@ class MainWindow(QMainWindow):
 
     def cut(self): 
         self.textEdit.cut()
+    
+    def wrap_toggle(self):
+        self.textEdit.setLineWrapMode(1 if self.textEdit.lineWrapMode() == 0 else 0)
 
 
-# Load class
+# Load functions and initialize app
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     main = MainWindow()

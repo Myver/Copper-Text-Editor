@@ -79,6 +79,8 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionMenuCopy"/>
     <addaction name="actionMenuPaste"/>
     <addaction name="actionMenuCut"/>
+    <addaction name="separator"/>
+    <addaction name="actionWrap_Mode"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -309,6 +311,14 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="toolTip">
     <string>**placeholder**</string>
+   </property>
+  </action>
+  <action name="actionWrap_Mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Toggle Wrap</string>
    </property>
   </action>
  </widget>
