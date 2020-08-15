@@ -25,4 +25,4 @@ Some icons by [Yusuke Kamiyamane](http://p.yusukekamiyamane.com/). Licensed unde
 
 ## License
 
-Copper Text Editor is distributed under the MIT license.
+Copper Text Editor is distributed under the GNU GPL v3.0 license.
