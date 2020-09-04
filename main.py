@@ -1,9 +1,9 @@
-# Copper Text Editor, ver. 0.9
+# Copper Text Editor, ver. 0.9.1
 import sys, os
 from PyQt5 import uic
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QMainWindow, QApplication
 
-ver = "0.9"
+ver = "0.9.1"
 
 # Main application class
 class MainWindow(QMainWindow):
